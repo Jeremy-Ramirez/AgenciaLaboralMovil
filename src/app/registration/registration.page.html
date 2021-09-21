@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="auth-form">
+  <ion-grid>
+    <ion-row>
+      <ion-col align-self-center>
+        <ion-button [routerLink]="['/register-empresa']" expand="block" color="primary">Empresa</ion-button>
+
+        <ion-button [routerLink]="['/register-empresa']" expand="block" color="danger">Aspirante</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
