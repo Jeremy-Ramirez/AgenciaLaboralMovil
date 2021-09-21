@@ -3,29 +3,136 @@
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Register</ion-title>
+    <ion-title>Registro Empresa</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <form>
     <ion-item lines="full">
-      <ion-label position="floating">First name</ion-label>
+      <ion-label position="floating">Tipo de documento </ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="cedula">Cédula de Identidad</ion-select-option> 
+      <ion-select-option value="pasaporte">RUC</ion-select-option> 
+      </ion-select>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">RUC/Cédula</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Tipo de Persona: </ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="natural">Natural</ion-select-option> 
+      <ion-select-option value="juridica">Juridica</ion-select-option> 
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Razón Social</ion-label>
       <ion-input type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Last name</ion-label>
+      <ion-label position="floating">Nombre Comercial</ion-label>
       <ion-input type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Email</ion-label>
+      <ion-label position="floating">Tipo de Empresa: </ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="mixta">Mixta</ion-select-option> 
+      <ion-select-option value="privada">Privada</ion-select-option> 
+      <ion-select-option value="publica">Pública</ion-select-option> 
+    </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Actividad Economica </ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="artesania">artesania</ion-select-option> 
+      <ion-select-option value="salud">salud</ion-select-option> 
+      <ion-select-option value="construccion">construccion</ion-select-option> 
+    </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Rama de Actividad </ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="artesania">artesania</ion-select-option> 
+      <ion-select-option value="salud">salud</ion-select-option> 
+      <ion-select-option value="construccion">construccion</ion-select-option> 
+    </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Ciudad</ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="gye">Guayaquil</ion-select-option> 
+      <ion-select-option value="uio">Quito</ion-select-option> 
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Provincia</ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="guayas">Guayas</ion-select-option> 
+      <ion-select-option value="pichincha">Pichincha</ion-select-option> 
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Sector</ion-label>
+      <ion-select okText="Okay" cancelText="Dismiss"> 
+      <ion-select-option value="norte">norte</ion-select-option> 
+      <ion-select-option value="sur">sur</ion-select-option> 
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Calle Principal</ion-label>
       <ion-input type="text" required></ion-input>
     </ion-item>
 
     <ion-item lines="full">
-      <ion-label position="floating">Password</ion-label>
+      <ion-label position="floating">Calle Secundaria</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Referencia</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Numero</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Teléfono de Oficina</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+    
+    <ion-item lines="full">
+      <ion-label position="floating">Pagina Web</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input type="password" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Contraseña Confirmacion</ion-label>
       <ion-input type="password" required></ion-input>
     </ion-item>
 
