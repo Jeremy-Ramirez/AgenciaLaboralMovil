@@ -8,12 +8,11 @@
 </ion-header>
 
 <ion-content>
-  <form>
+  <form >
     <ion-item lines="full">
       <ion-label position="floating">Tipo de documento </ion-label>
       <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option value="cedula">Cédula de Identidad</ion-select-option> 
-      <ion-select-option value="pasaporte">RUC</ion-select-option> 
+      <ion-select-option *ngFor="let t of tipodocumentos">{{t.descripcion}}</ion-select-option>      
       </ion-select>
     </ion-item>
     
@@ -25,8 +24,7 @@
     <ion-item lines="full">
       <ion-label position="floating">Tipo de Persona: </ion-label>
       <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option value="natural">Natural</ion-select-option> 
-      <ion-select-option value="juridica">Juridica</ion-select-option> 
+      <ion-select-option  *ngFor="let t of tipopersonas"> {{t.descripcion}}</ion-select-option> 
       </ion-select>
     </ion-item>
 
@@ -128,11 +126,6 @@
 
     <ion-item lines="full">
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Contraseña Confirmacion</ion-label>
       <ion-input type="password" required></ion-input>
     </ion-item>
 
