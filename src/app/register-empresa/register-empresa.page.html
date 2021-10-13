@@ -8,135 +8,148 @@
 </ion-header>
 
 <ion-content>
-  <form >
-    <ion-item lines="full">
-      <ion-label position="floating">Tipo de documento </ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let t of tipodocumentos" value="{{t.idtipodocumento}}">
-        {{t.descripcion}}
-      </ion-select-option>      
-      </ion-select>
-    </ion-item>
-    
-    <ion-item lines="full">
-      <ion-label position="floating">RUC/Cédula</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    
-    <ion-item lines="full">
-      <ion-label position="floating">Tipo de Persona: </ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option  *ngFor="let t of tipopersonas" value="{{t.idtipopersona}}"> 
-        {{t.descripcion}}</ion-select-option> 
-      </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Razón Social</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Nombre Comercial</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Tipo de Empresa: </ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}">
-        {{t.descripcion}}
-      </ion-select-option> 
-    </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Actividad Economica </ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
-        {{a.descripcion}}
-      </ion-select-option> 
+  <form [formGroup] ="formEmpresa" (ngSubmit)="crear()">
+      <ion-item lines="full">
+        <ion-label position="floating">Tipo de documento </ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='tipodocumentos'> 
+        <ion-select-option *ngFor="let t of tipodocumentos" value="{{t.idtipodocumento}}">
+          {{t.descripcion}}
+        </ion-select-option>      
+        </ion-select>
+      </ion-item>
+      <span class="error ion-padding" *ngIf="submitted && errorCtr.tipodocumentos.errors?.required">
+        Name is required.
+      </span>
       
-    </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Rama de Actividad </ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option  *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
-        {{r.descripcion}}
-      </ion-select-option> 
-     
-    </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Ciudad</ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
-        {{c.nombreciudad}}</ion-select-option> 
+      <ion-item lines="full">
+        <ion-label position="floating">RUC/Cédula</ion-label>
+        <ion-input type="text"  formControlName='ruc_cedula'></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">Tipo de Persona: </ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='tipopersonas'> 
+        <ion-select-option  *ngFor="let t of tipopersonas" value="{{t.idtipopersona}}"> 
+          {{t.descripcion}}</ion-select-option> 
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Razón Social</ion-label>
+        <ion-input type="text"   formControlName='razonsocial'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Nombre Comercial</ion-label>
+        <ion-input type="text"  formControlName='nombrecomercial' ></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Tipo de Empresa: </ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss"  formControlName='tipoempresas' > 
+        <ion-select-option *ngFor="let t of tipoempresas" value="{{t.idtipoempresa}}">
+          {{t.descripcion}}
+        </ion-select-option> 
       </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Provincia</ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
-        {{p.nombreprovincia}}</ion-select-option> 
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Actividad Economica </ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='actividadeconomicas' > 
+        <ion-select-option *ngFor="let a of actividadeconomicas" value="{{a.idactividadeconomica}}">
+          {{a.descripcion}}
+        </ion-select-option> 
+        
       </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Sector</ion-label>
-      <ion-select okText="Okay" cancelText="Dismiss"> 
-      <ion-select-option *ngFor="let s of sectores" value="{{s.idsector}}">
-        {{s.descripcion}}</ion-select-option> 
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Rama de Actividad </ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='ramaactividads'> 
+        <ion-select-option  *ngFor="let r of ramaactividads" value="{{r.idramaactividad}}">
+          {{r.descripcion}}
+        </ion-select-option> 
+        
       </ion-select>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Calle Principal</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Calle Secundaria</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Ciudad</ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='ciudades'> 
+        <ion-select-option *ngFor="let c of ciudades"  value="{{c.idciudad}}">
+          {{c.nombreciudad}}</ion-select-option> 
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Provincia</ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss"  formControlName='provincias'> 
+        <ion-select-option *ngFor="let p of provincias"  value="{{p.idprovincia}}">
+          {{p.nombreprovincia}}</ion-select-option> 
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Sector</ion-label>
+        <ion-select okText="Okay" cancelText="Dismiss" formControlName='sectores'> 
+        <ion-select-option *ngFor="let s of sectores" value="{{s.idsector}}">
+          {{s.descripcion}}</ion-select-option> 
+        </ion-select>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating" >Calle Principal</ion-label>
+        <ion-input type="text" formControlName='calleprincipal'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Calle Secundaria</ion-label>
+        <ion-input type="text"  formControlName='callesecundaria'></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">Referencia</ion-label>
+        <ion-input type="text"  formControlName='referencia'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Mz</ion-label>
+        <ion-input type="text"  formControlName='mz'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Villa</ion-label>
+        <ion-input type="text"  formControlName='villa'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Teléfono de Celular </ion-label>
+        <ion-input type="text" formControlName='celular'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Teléfono de Oficina</ion-label>
+        <ion-input type="text"  formControlName='telefonooficina'></ion-input>
+      </ion-item>
+      
+      <ion-item lines="full">
+        <ion-label position="floating">Pagina Web</ion-label>
+        <ion-input type="text"  formControlName='paginaweb'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="text" formControlName='correoelectronico'></ion-input>
+      </ion-item>
+  
+      <ion-item lines="full">
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName='contrasenia' ></ion-input>
+      </ion-item>
     
-    <ion-item lines="full">
-      <ion-label position="floating">Referencia</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Numero</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Teléfono de Oficina</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-    
-    <ion-item lines="full">
-      <ion-label position="floating">Pagina Web</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Correo</ion-label>
-      <ion-input type="text" required></ion-input>
-    </ion-item>
-
-    <ion-item lines="full">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input type="password" required></ion-input>
-    </ion-item>
-
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+        <ion-button type="submit" color="danger" expand="block" >Sign Up</ion-button>
       </ion-col>
     </ion-row>
   </form>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import {TipodocumentoService} from '../servicios/tipodocumento.service'
 import {TipopersonaService} from '../servicios/tipopersona.service'
 import {TipoempresaService} from '../servicios/tipoempresa.service'
@@ -10,6 +10,8 @@ import {ProvinciaService} from '../servicios/provincia.service'
 import {SectorService} from '../servicios/sector.service'
 import {EmpresaService} from '../servicios/empresa.service'
 import {throwError} from 'rxjs';
+
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-register-empresa',
@@ -27,7 +29,6 @@ export class RegisterEmpresaPage implements OnInit {
   sectores: any[]=[];
   empresas: any []=[];
   new_empresa: any []=[];
-  
   constructor(
     private _tipodocumentoService: TipodocumentoService,
     private _tipopersonaService: TipopersonaService,
@@ -38,6 +39,8 @@ export class RegisterEmpresaPage implements OnInit {
     private _provinciaService: ProvinciaService,
     private _sectorService: SectorService,
     private _empresaService: EmpresaService,
+    private form: FormBuilder,
+    private httpClient:HttpClient
     ) { 
       
   }
@@ -81,8 +84,49 @@ export class RegisterEmpresaPage implements OnInit {
     this._sectorService.getSector().subscribe((resp:any)=>{
       this.sectores=resp
       console.log(resp)
-
     });
     
+  }
+
+  formEmpresa = this.form.group({
+    tipodocumentos: ["", Validators.required],
+    actividadeconomicas: ["", Validators.required],
+    ramaactividads: ["", Validators.required],
+    sectores: ["", Validators.required],
+    provincias: ["", Validators.required],
+    tipoempresas: ["", Validators.required],
+    tipopersonas: ["", Validators.required],
+    ruc_cedula:["", [Validators.required, Validators.minLength(10)]],
+    razonsocial:["",[Validators.required]],
+    nombrecomercial: ["", [Validators.required]],
+    calleprincipal: ["", [Validators.required]],
+    callesecundaria: ["", [Validators.required]],
+    mz: ["", [Validators.required]],
+    villa: ["", [Validators.required]],
+    referencia: ["", [Validators.required]],
+    paginaweb: ["", [Validators.required]],
+    ciudades: ["", Validators.required],
+    correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
+    celular:["",[Validators.required,Validators.minLength(10)]],
+    telefonooficina:["",[Validators.required,Validators.minLength(10)]],
+    contrasenia:["", [Validators.required]],
+  })
+
+  crear(){
+    if(this.formEmpresa.invalid) {
+      return Object.values(this.formEmpresa.controls).forEach(control=>{
+        control.markAsTouched();
+      })
+      }
+      console.log(this.formEmpresa.value);
+      this.httpClient.post('http://localhost:8000/api/empresas/', this.formEmpresa.value).subscribe(
+        resp => console.log(resp),
+        err => console.log(err)
+      )
+    alert('USUARIO CREADO')
+  }
+  
+  get errorCtr() {
+    return this.formEmpresa.controls;
   }
 }
