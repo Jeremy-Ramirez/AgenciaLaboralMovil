@@ -27,7 +27,23 @@ const routes: Routes = [
   {
     path: 'register-empresa',
     loadChildren: () => import('./register-empresa/register-empresa.module').then( m => m.RegisterEmpresaPageModule)
-  }
+  },
+  {
+    path: 'login-empresa',
+    loadChildren: () => import('./login-empresa/login-empresa.module').then( m => m.LoginEmpresaPageModule)
+  },
+  {
+    path: 'sesion-empresa',
+    loadChildren: () => import('./sesion-empresa/sesion-empresa.module').then( m => m.SesionEmpresaPageModule)
+  },
+  {
+    path: 'perfil-empresa',
+    loadChildren: () => import('./perfil-empresa/perfil-empresa.module').then( m => m.PerfilEmpresaPageModule)
+  },
+  {
+    path: 'informacion-empresa',
+    loadChildren: () => import('./informacion-empresa/informacion-empresa.module').then( m => m.InformacionEmpresaPageModule)
+  },
 ];
 
 @NgModule({

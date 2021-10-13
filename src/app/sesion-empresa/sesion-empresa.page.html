@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Sesion Empresa</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col>
+      <ion-button type="submit" color="danger" expand="block" [routerLink]="['/perfil-empresa']">Perfil Empresa</ion-button>
+      <ion-button type="submit" color="danger" expand="block" [routerLink]="['/informacion-empresa']">Información Empresa</ion-button>
+      <ion-button type="submit" color="danger" expand="block" (click)="logout()" routerLink="/">Salir</ion-button>
+    </ion-col>
+  </ion-row>
+</ion-content>

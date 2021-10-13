@@ -5,18 +5,18 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { ReactiveFormsModule} from '@angular/forms' ;
-import { RegisterEmpresaPageRoutingModule } from './register-empresa-routing.module';
+import { LoginEmpresaPageRoutingModule } from './login-empresa-routing.module';
 
-import { RegisterEmpresaPage } from './register-empresa.page';
+import { LoginEmpresaPage } from './login-empresa.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
+    IonicModule,    
     ReactiveFormsModule,
-    RegisterEmpresaPageRoutingModule
+    LoginEmpresaPageRoutingModule
   ],
-  declarations: [RegisterEmpresaPage]
+  declarations: [LoginEmpresaPage]
 })
-export class RegisterEmpresaPageModule {}
+export class LoginEmpresaPageModule {}

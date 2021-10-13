@@ -1,38 +1,34 @@
+
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
-    <ion-title>Registro Empresa</ion-title>
+    <ion-title>Informacion Empresa </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <form [formGroup] ="formEmpresa" (ngSubmit)="crear()">
-      <ion-item lines="full">
-        <ion-label position="floating">Tipo de documento </ion-label>
-        <ion-select okText="Okay" cancelText="Dismiss" formControlName='tipodocumentos'> 
-        <ion-select-option *ngFor="let t of tipodocumentos" value="{{t.idtipodocumento}}">
-          {{t.descripcion}}
-        </ion-select-option>      
-        </ion-select>
-      </ion-item>
-      <span class="error ion-padding" *ngIf="submitted && errorCtr.tipodocumentos.errors?.required">
-        Name is required.
-      </span>
-      
-      <ion-item lines="full">
-        <ion-label position="floating">RUC/Cédula</ion-label>
-        <ion-input type="text"  formControlName='ruc_cedula'></ion-input>
-      </ion-item>
-      
-      <ion-item lines="full">
-        <ion-label position="floating">Tipo de Persona: </ion-label>
-        <ion-select okText="Okay" cancelText="Dismiss" formControlName='tipopersonas'> 
-        <ion-select-option  *ngFor="let t of tipopersonas" value="{{t.idtipopersona}}"> 
-          {{t.descripcion}}</ion-select-option> 
-        </ion-select>
-      </ion-item>
+  <form [formGroup] ="formEmpresa" (ngSubmit)="guardar()">
+     
+      <ion-card-content>
+        <ion-card-title>
+          Tipo de Documento
+        </ion-card-title>
+        <p>{{tipodocumentos}}</p>
+      </ion-card-content>
+      <ion-card-content>
+        <ion-card-title>
+          RUC/Cédula
+        </ion-card-title>
+        <p>{{ruc_cedula}}</p>
+      </ion-card-content>
+      <ion-card-content>
+        <ion-card-title>
+          Tipo de Persona
+        </ion-card-title>
+        <p>{{tipopersonas}}</p>
+      </ion-card-content>
   
       <ion-item lines="full">
         <ion-label position="floating">Razón Social</ion-label>
@@ -149,7 +145,7 @@
     
     <ion-row>
       <ion-col>
-        <ion-button type="submit" color="danger" expand="block" >Registrarse</ion-button>
+        <ion-button type="submit" color="danger" expand="block" >Actualizar</ion-button>
       </ion-col>
     </ion-row>
   </form>
