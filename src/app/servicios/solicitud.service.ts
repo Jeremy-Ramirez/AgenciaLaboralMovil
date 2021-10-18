@@ -10,6 +10,6 @@ export class SolicitudService {
   }
   
   getSolicitudes(){
-    return this.httpClient.get('http://127.0.0.1:8000/api/solicitudes/')
+    return this.httpClient.get('https://agencialaboralproyecto.pythonanywhere.com/api/solicitudes/')
   }
 }
