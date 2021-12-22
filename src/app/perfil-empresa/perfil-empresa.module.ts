@@ -6,6 +6,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { PerfilEmpresaPageRoutingModule } from './perfil-empresa-routing.module';
 
+import { ReactiveFormsModule} from '@angular/forms' ;
 import { PerfilEmpresaPage } from './perfil-empresa.page';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PerfilEmpresaPage } from './perfil-empresa.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    PerfilEmpresaPageRoutingModule
+    PerfilEmpresaPageRoutingModule,
+    ReactiveFormsModule,
   ],
   declarations: [PerfilEmpresaPage]
 })

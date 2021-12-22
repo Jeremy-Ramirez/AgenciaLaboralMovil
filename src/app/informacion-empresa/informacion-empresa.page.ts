@@ -19,8 +19,8 @@ import {Emitters} from '../emitters/emitters';
   styleUrls: ['./informacion-empresa.page.scss'],
 })
 export class InformacionEmpresaPage implements OnInit {
-  tipopersonas=""; 
-  tipodocumentos= "";
+  tipopersonas: any;
+  tipodocumentos: any;
   tipoempresas:any[]=[];
   ramaactividads:any[]=[];
   actividadeconomicas:any[]=[];
@@ -31,8 +31,12 @@ export class InformacionEmpresaPage implements OnInit {
   new_empresa: any []=[];
   ruc_cedula='';
   idempresa = '';
+  tipopersonaDesc ='';
+  tipodocumentoDesc ='';
   constructor(
     private _tipoempresaService: TipoempresaService,
+    private _tipodocumentoService: TipodocumentoService,
+    private _tipopersonaService: TipopersonaService,
     private _ramaactividadService: RamaactividadService,
     private _actividadeconomicaService: ActividadeconomicaService,
     private _ciudadService: CiudadService,
@@ -41,10 +45,10 @@ export class InformacionEmpresaPage implements OnInit {
     private _empresaService: EmpresaService,
     private form: FormBuilder,
     private httpClient:HttpClient
-    ) { 
-      
+    ) {
+
   }
-  
+
   ngOnInit() {
     this._tipoempresaService.getTipoempresas().subscribe((resp:any)=>{
       this.tipoempresas=resp
@@ -78,25 +82,42 @@ export class InformacionEmpresaPage implements OnInit {
     this._empresaService.loginEmpresa().subscribe((resp:any)=>{
       Emitters.authEmitter.emit(true);
       this.ruc_cedula=resp.ruc_cedula
-      this.tipopersonas=resp.tipopersona_idtipopersona.descripcion
-      this.tipodocumentos=resp.tipodocumento_idtipodocumento.descripcion
+      this._tipodocumentoService.getTipodocumentos().subscribe((resp1:any)=>{
+        this.tipodocumentos=resp1
+        console.log(resp1)
+        for(let i=0;i<this.tipodocumentos.length;i++){
+          if(this.tipodocumentos[i].idtipodocumento==resp.tipodocumento_idtipodocumento){
+            this.tipodocumentoDesc= this.tipodocumentos[i].descripcion;
+          }
+        }
+        console.log(this.tipodocumentoDesc)
+
+      });
+      this._tipopersonaService.getTipopersonas().subscribe((resp2:any)=>{
+        this.tipopersonas=resp2
+        console.log(resp2)
+        for(let i=0;i<this.tipopersonas.length;i++){
+          if(this.tipopersonas[i].idtipopersona==resp.tipopersona_idtipopersona){
+            this.tipopersonaDesc= this.tipopersonas[i].descripcion;
+          }
+        }
+        console.log(this.tipopersonaDesc)
+
+      });
       this.idempresa=resp.idempresa
-      console.log(resp)  
+      console.log(resp)
       },
       err => {
         Emitters.authEmitter.emit(false);
       });
   }
-
+  
   formEmpresa = this.form.group({
-    tipodocumentos: ["", Validators.required],
-    actividadeconomicas: ["", Validators.required],
-    ramaactividads: ["", Validators.required],
-    sectores: ["", Validators.required],
-    provincias: ["", Validators.required],
-    tipoempresas: ["", Validators.required],
-    tipopersonas: ["", Validators.required],
-    ruc_cedula:["", [Validators.required, Validators.minLength(10)]],
+    actividadeconomicas: ["", [Validators.required]],
+    ramaactividads: ["", [Validators.required]],
+    sectores: ["", [Validators.required]],
+    provincias: ["", [Validators.required]],
+    tipoempresas: ["", [Validators.required]],
     razonsocial:["",[Validators.required]],
     nombrecomercial: ["", [Validators.required]],
     calleprincipal: ["", [Validators.required]],
@@ -104,12 +125,10 @@ export class InformacionEmpresaPage implements OnInit {
     mz: ["", [Validators.required]],
     villa: ["", [Validators.required]],
     referencia: ["", [Validators.required]],
-    paginaweb: ["", [Validators.required]],
+    paginaweb: [""],
     ciudades: ["", Validators.required],
-    correoelectronico:["",[Validators.required,Validators.pattern("[a-z0-9._%+-]+@[a-z0-9.-]+[.][a-z]{2,3}$")]],
-    celular:["",[Validators.required,Validators.minLength(10)]],
-    telefonooficina:["",[Validators.required,Validators.minLength(10)]],
-    contrasenia:["", [Validators.required]],
+    celular:["",[Validators.required]],
+    telefonooficina:["",[Validators.required]],
   })
 
   guardar(){
@@ -120,7 +139,7 @@ export class InformacionEmpresaPage implements OnInit {
     }
   
       console.log(this.formEmpresa.value);
-      this.httpClient.put('http://localhost:8000/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
+      this.httpClient.put('https://agencialaboralproyecto.pythonanywhere.com/api/empresas/'+this.idempresa, this.formEmpresa.value).subscribe(
         resp => console.log(resp),
         err => console.log(err)
   
@@ -128,8 +147,10 @@ export class InformacionEmpresaPage implements OnInit {
     
     
     alert('Se han guardado los cambios')
+    
+    window.location.reload()
   }
-  
+
   get errorCtr() {
     return this.formEmpresa.controls;
   }

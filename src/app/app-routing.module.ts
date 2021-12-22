@@ -44,6 +44,14 @@ const routes: Routes = [
     path: 'informacion-empresa',
     loadChildren: () => import('./informacion-empresa/informacion-empresa.module').then( m => m.InformacionEmpresaPageModule)
   },
+  {
+    path: 'contrasenia-empresa',
+    loadChildren: () => import('./contrasenia-empresa/contrasenia-empresa.module').then( m => m.ContraseniaEmpresaPageModule)
+  },
+  {
+    path: 'oferta-empleo',
+    loadChildren: () => import('./oferta-empleo/oferta-empleo.module').then( m => m.OfertaEmpleoPageModule)
+  },
 ];
 
 @NgModule({
